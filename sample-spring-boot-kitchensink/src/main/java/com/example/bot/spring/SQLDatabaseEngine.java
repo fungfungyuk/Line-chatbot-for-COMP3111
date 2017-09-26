@@ -25,14 +25,14 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 			ResultSet rs = stmt.executeQuery();
 			if(rs.next())
 			{
-				result = rs.getString(1);
+				result = rs.getString(0);
 			}
 		}
 		catch (Exception e)
 		{
 			System.out.println(e);
 		}
-		return null;
+		return result;
 	}
 	
 	
