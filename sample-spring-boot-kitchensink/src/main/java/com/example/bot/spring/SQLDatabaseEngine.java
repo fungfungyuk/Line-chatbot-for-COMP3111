@@ -12,6 +12,26 @@ public class SQLDatabaseEngine extends DatabaseEngine {
 	@Override
 	String search(String text) throws Exception {
 		//Write your code here
+		String result = null;
+		String SQL = "select response from line_chat_bot where keyword like concat('%', ? , '%')";
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		
+		try
+		{
+			conn = getConnection();
+			stmt = conn.prepareStatement(SQL);
+			stmt.setString(1, text);
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next())
+			{
+				result = rs.getString(1);
+			}
+		}
+		catch (Exception e)
+		{
+			System.out.println(e);
+		}
 		return null;
 	}
 	
